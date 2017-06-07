@@ -1,0 +1,22 @@
+<form action="{% url 'query_result' %}" method="POST">
+    {% csrf_token %}
+    <h2>Query</h2>
+    <br>
+    <textarea name="query" style="height:30%; width:50%;"></textarea>
+    <br>
+    <br>
+    <input type="submit" value="submit">
+</form>
+
+{{ sql }}<br>
+{% if rows != "error" %}
+	{% if rows %}
+	Success<br>
+	{% for row in rows %}
+		{{row}}<br>
+	{% endfor %}
+	{% endif %}
+
+{% else %}
+	Error
+{% endif %}
